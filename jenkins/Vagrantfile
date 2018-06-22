@@ -1,0 +1,56 @@
+varJenkinshost = "jenkins"
+varDomain = "globomantics"
+varJenkinsDataPath = "E:/GIT/vagrant/jenkins/"
+varHostEntries = ""
+
+# Define the hosts in an array
+nodes = [
+
+        {:host => "#{varJenkinshost}""-0", :ip => "10.11.30.26", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4}
+]
+
+
+nodes.each do |node|
+    varHostEntries << "#{node[:ip]} #{node[:host]}.#{varDomain} #{node[:host]}\n"
+end
+#Now pass hostfile content into /etc/hosts
+$etchosts = <<SCRIPT
+#!/bin/bash
+cat > /etc/hosts <<EOF
+127.0.0.1       localhost
+10.12.30.1     host.#{varDomain} host
+#{varHostEntries}
+EOF
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = false
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+  nodes.each do |node|
+  config.vm.define node [:host] do |node_config|
+
+    node_config.vm.box = node [:box]
+
+    node_config.vm.network "private_network", ip: node[:ip], :netmask => "255.255.255.0"
+    node_config.vm.hostname = "#{node [:host]}.#{varDomain}"
+    node_config.hostmanager.aliases = "#{node[:host]}"
+    node_config.vm.provider :virtualbox do |v|
+      v.name = node[:host].to_s
+      v.gui = node[:gui]
+      v.customize ["modifyvm", :id, "--memory", node[:ram].to_s]
+      v.customize ["modifyvm", :id, "--cpus", node[:cpu].to_s]
+    end
+      node_config.vm.provision :shell, :inline => $etchosts
+      node_config.vm.provision :shell, :path => "bin/setup-jenkins.sh"
+      node_config.vm.provision :shell, :path => "bin/setup-ansible.sh"
+      node_config.vm.synced_folder varJenkinsDataPath, "/var/lib/jenkins",
+        id: "jenkins-data",
+        owner: "jenkins",
+        group: "jenkins"
+
+    end
+  end
+end
