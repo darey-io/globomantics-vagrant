@@ -1,0 +1,1 @@
+cat setup-ansible.sh | tr -d '\r' > setup-ansible2.sh

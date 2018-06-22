@@ -46,10 +46,6 @@ Vagrant.configure("2") do |config|
       node_config.vm.provision :shell, :inline => $etchosts
       node_config.vm.provision :shell, :path => "bin/setup-jenkins.sh"
       node_config.vm.provision :shell, :path => "bin/setup-ansible.sh"
-      node_config.vm.synced_folder varJenkinsDataPath, "/var/lib/jenkins",
-        id: "jenkins-data",
-        owner: "jenkins",
-        group: "jenkins"
 
     end
   end

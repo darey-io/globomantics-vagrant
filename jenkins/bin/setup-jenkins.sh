@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 # Ad the jenkins key to the system
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 
@@ -12,4 +10,3 @@ echo "Installing Jenkins..."
 sudo apt-get update
 sudo apt-get install openjdk-8-jre-headless -y
 sudo apt-get install jenkins -y
-
