@@ -1,14 +1,12 @@
-varJenkinshost = "jenkins"
+varUtilityNode  = "util"
+
 varDomain = "globomantics"
-varJenkinsDataPath = "E:/GIT/vagrant/jenkins/"
 varHostEntries = ""
 
 # Define the hosts in an array
 nodes = [
-
-        {:host => "#{varJenkinshost}""-0", :ip => "10.11.30.26", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4}
+        {:host => "#{varUtilityNode }", :ip => "10.11.30.33", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4}
 ]
-
 
 nodes.each do |node|
     varHostEntries << "#{node[:ip]} #{node[:host]}.#{varDomain} #{node[:host]}\n"
@@ -44,8 +42,9 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--cpus", node[:cpu].to_s]
     end
       node_config.vm.provision :shell, :inline => $etchosts
-      node_config.vm.provision :shell, :path => "bin/setup-jenkins.sh"
       node_config.vm.provision :shell, :path => "bin/setup-ansible.sh"
+      node_config.vm.provision :shell, :path => "bin/setup-docker.sh"
+      node_config.vm.provision :shell, :path => "bin/setup-kubectl.sh"
     end
   end
 end
