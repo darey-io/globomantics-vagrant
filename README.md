@@ -11,8 +11,7 @@ A Client/Utility server for remote management and administration
 ## Jenkins Server
 CI/CD pipelines
 
-## Kubernetes Cluster
-I will be using this cluster for different kubernetes deployments, such as
+## Kubernetes ClusterI will be using this cluster for different kubernetes deployments, such as
 - ELK stack
 - Python app
 - Java app
@@ -21,11 +20,8 @@ I will be using this cluster for different kubernetes deployments, such as
 I use VMs for the Consul cluster. My desired configuration is to ultimately use kubernetes for consul. But for now, lets stick with the VMs.
 
 ## OS on all nodes:
-- Distributor ID: Ubuntu
-- Description:    Ubuntu 16.04.4 LTS
-- Release:        16.04
-- Codename:       xenial
 
 ## Notes:
 -After first time logon to any of the servers with docker installed, you will need to run the below command
 ```su $USER```
+
