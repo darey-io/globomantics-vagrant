@@ -20,8 +20,12 @@ CI/CD pipelines
 I use VMs for the Consul cluster. My desired configuration is to ultimately use kubernetes for consul. But for now, lets stick with the VMs.
 
 ## OS on all nodes:
+- Distributor ID: Ubuntu
+- Description:    Ubuntu 16.04.4 LTS
+- Release:        16.04
+- Codename:       xenial
 
 ## Notes:
--After first time logon to any of the servers with docker installed, you will need to run the below command
+- After first time logon to any of the servers with docker installed, you will need to run the below command
 ```su $USER```
 
