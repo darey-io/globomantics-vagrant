@@ -11,10 +11,15 @@ A Client/Utility server for remote management and administration
 ## Jenkins Server
 CI/CD pipelines
 
-## Kubernetes ClusterI will be using this cluster for different kubernetes deployments, such as
+## Kubernetes Cluster - I will be using kubernetes to deploy different applications and technologies, such as
 - ELK stack
 - Python app
 - Java app
+- Consul
+- nginx
+- Apache Web Server
+- Mysql
+- Redshift
 
 ## Consul Cluster
 I use VMs for the Consul cluster. My desired configuration is to ultimately use kubernetes for consul. But for now, lets stick with the VMs.
