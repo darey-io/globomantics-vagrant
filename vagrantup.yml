@@ -1,0 +1,36 @@
+---
+
+- hosts: 127.0.0.1
+
+  tasks:
+  - name: Provision the Kubernetes Cluster
+    shell: vagrant up
+    register: vagrantresult
+    args:
+      chdir: /cygdrive/e/GIT/tmp/vagrant/k8s-cluster
+    async: 100000
+    poll: 0
+
+  - name: Provision the management node
+    shell: vagrant up
+    register: vagrantresult
+    args:
+      chdir: /cygdrive/e/GIT/tmp/vagrant/utility
+    async: 100000
+    poll: 0
+
+  - name: Provision the Consul Servers
+    shell: vagrant up
+    register: vagrantresult
+    args:
+      chdir: /cygdrive/e/GIT/tmp/vagrant/consul-servers
+    async: 100000
+    poll: 0
+
+  - name: Provision Jenkins Server
+    shell: vagrant up
+    register: vagrantresult
+    args:
+      chdir: /cygdrive/e/GIT/tmp/vagrant/jenkins
+    async: 100000
+    poll: 0
