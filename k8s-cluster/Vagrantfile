@@ -6,12 +6,12 @@ varHostEntries = ""
 # Define the hosts in an array
 nodes = [
 
-        {:host => "#{vark8sMaster }""-0", :ip => "10.11.30.27", :box => "ubuntu/xenial64", :gui => false, :ram => 81982, :cpu => 8},
-        {:host => "#{vark8sNode }""-0", :ip => "10.11.30.28", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
-        {:host => "#{vark8sNode }""-1", :ip => "10.11.30.29", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
-        {:host => "#{vark8sNode }""-2", :ip => "10.11.30.30", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
-        {:host => "#{vark8sNode }""-3", :ip => "10.11.30.31", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
-        {:host => "#{vark8sNode }""-4", :ip => "10.11.30.32", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4}
+        {:host => "#{vark8sMaster }""-1", :ip => "10.11.30.27", :box => "ubuntu/xenial64", :gui => false, :ram => 81982, :cpu => 8},
+        {:host => "#{vark8sNode }""-1", :ip => "10.11.30.28", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
+        {:host => "#{vark8sNode }""-2", :ip => "10.11.30.29", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
+        {:host => "#{vark8sNode }""-3", :ip => "10.11.30.30", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
+        {:host => "#{vark8sNode }""-4", :ip => "10.11.30.31", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4},
+        {:host => "#{vark8sNode }""-5", :ip => "10.11.30.32", :box => "ubuntu/xenial64", :gui => false, :ram => 5120, :cpu => 4}
 
 ]
 
