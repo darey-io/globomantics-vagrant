@@ -1,12 +1,14 @@
 # infrastructure Development using DEVOPS Technologies
-This is one of those projects that I pick up myself when I am less busy. the goal is to use it as  opportunity to practice and touch on different technologies around automation and Devops.
+This is one of those projects that I pick up myself when I am less busy. the goal is to use it as  opportunity to practice and touch on different technologies around automation and Devops. 
+
+The infrastructure is for a popular fictional company called Globomantics. The company embraces IAC practices and her private cloud is provisioned with one of Hashicorps tool-kit "Vagrant"
 
 ## Disclaimer
 The coding practice here is not entirely intended for production best practices. However, as I gain more free time, I will be be refactoring the code from time to time to embrace IAC best practices.
 
 ## Overview
 
-In this particular project, I set up an infrastructure on my 128GB RAM HPz820 Server at home. My goal is to have a CI/CD pipeline for different use cases, and different software technologies.
+In this particular project, I set up Globomantic's infrastructure on my 128GB RAM HPz820 Server at home. My goal is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time, and you are interested to work with me to create use cases and codify them, then by all means please reach out to me at dolufunmilayo@3xpoint.com
 
 ## Setup:
 
