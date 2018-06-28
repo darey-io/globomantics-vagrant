@@ -1,0 +1,43 @@
+# Define variables
+varDomain = "globomantics"
+vark8sNode = "k8sn"
+varHostEntries = ""
+varVMMemory = 5120
+varVMCPU = 4
+
+#Build content for /etc/hosts file
+$etchosts = <<SCRIPT
+#!/bin/bash
+cat > /etc/hosts <<EOF
+127.0.0.1       localhost
+#{varHostEntries}
+EOF
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.provision "shell", path: "provision/setup-consul.sh", privileged: false
+  config.vm.provision "shell", path: "provision/setup-ansible.sh", privileged: false
+  config.vm.provision "shell", path: "provision/setup-docker.sh", privileged: false
+  config.vm.provision "shell", path: "provision/setup-kubectl.sh", privileged: false
+
+  ['china', 'london'].each do |dc|
+
+    ip_prefix = dc == 'china' ? '172.20.20.1' : '172.20.20.'
+
+    (1..3).each do |i|
+      config.vm.define "#{dc}-k8sn#{i}" do |k8sn|
+        k8sn.vm.hostname = "#{dc}-k8sn#{i}"
+        k8sn.vm.network "private_network", ip: "#{ip_prefix}4#{i}"
+        varHostEntries << "#{ip_prefix}4#{i}" "#{dc}-k8sn#{i}.#{varDomain}" "#{dc}-k8sn#{i}\n"
+        k8sn.vm.provision :shell, :inline => $etchosts
+        k8sn.vm.provider :virtualbox do |v|
+          v.name = "#{dc}-#{vark8sNode}#{i}".to_s
+          v.gui = false
+          v.customize ["modifyvm", :id, "--memory", "#{varVMMemory}".to_s]
+          v.customize ["modifyvm", :id, "--cpus", "#{varVMCPU}".to_s]
+         end
+      end
+    end
+  end
+end

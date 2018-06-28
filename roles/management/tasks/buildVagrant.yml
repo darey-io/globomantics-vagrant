@@ -1,0 +1,20 @@
+---
+
+- name: Set up the working directory for management node
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ working_dir }}"
+    - "{{ working_dir }}/provision"
+
+- name: Build the provisioning environment for Vagrant (Management Node)
+  template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+  with_items:
+    - {src: "doubleDCvagrantfile.j2" , dest: "{{ working_dir }}/Vagrantfile"}
+    - {src: "setup-ansible.sh.j2" , dest: "{{ working_dir }}/provision/setup-ansible.sh"}
+    - {src: "setup-consul.sh.j2" , dest: "{{ working_dir }}/provision/setup-consul.sh"}
+    - {src: "setup-docker.sh.j2" , dest: "{{ working_dir }}/provision/setup-docker.sh"}
+    - {src: "setup-kubectl.sh.j2" , dest: "{{ working_dir }}/provision/setup-kubectl.sh"}

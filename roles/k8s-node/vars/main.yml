@@ -1,0 +1,3 @@
+---
+# vars file for k8s-node
+working_dir: "{{ vagrant_dir }}/k8s-node"
