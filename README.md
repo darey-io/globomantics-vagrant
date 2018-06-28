@@ -1,18 +1,20 @@
 # infrastructure Development using DEVOPS Technologies
-This is one of those projects that I pick up myself when I am less busy. the goal is to use it as  opportunity to practice and touch on different technologies around automation and Devops. 
+This is one of those projects that I pick up when I am less busy. The goal is to use it as an opportunity to practice and touch on different technologies around automation and Devops. 
 
-The infrastructure is for a popular fictional company called Globomantics. The company embraces IAC practices and her private cloud is provisioned with one of Hashicorps tool-kit "Vagrant"
+This infrastructure is for a popular fictional company called Globomantics. The company embraces IAC practices and her private cloud is provisioned with one of Hashicorps tool-kit "Vagrant"
 
 ## Disclaimer
-The coding practice here is not entirely intended for production best practices. However, as I gain more free time, I will be be refactoring the code from time to time to embrace IAC best practices.
+The coding practice here is not entirely intended for production best practices. However, as I gain more free time, I will be refactoring the code from time to time to embrace IAC best practices.
 
 ## Overview
 
-In this particular project, I set up Globomantic's infrastructure on my 128GB RAM HPz820 Server at home. My goal is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time, and you are interested to work with me to create use cases and codify them, then by all means please reach out to me at dolufunmilayo@3xpoint.com
+In this particular project, I set up Globomantic's infrastructure on my 128GB RAM HPz820 Server at home (If you dont have a beefy system, its fine. Just tweak the ansible variable and adjust the guest VM's CPU and Memory sizes). 
+
+Part of what i intend to achieve is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time like me, and you are interested to work with me to improve this infrastructure, and also create more use cases, then by all means please reach out to me at dolufunmilayo@3xpoint.com. You can also have a look at the TODO.md file in this repository. Thats my little JIRA for task management. :)
 
 ## Setup:
 
-Vagrant is used to create virtual machines, but I have wrapped up the provisioning with an Ansible playbook.
+Vagrant is used to create virtual machines, but I have wrapped up the provisioning with Ansible.
 
 ### To Boot Up the Infrastructure
 
@@ -20,11 +22,9 @@ Vagrant is used to create virtual machines, but I have wrapped up the provisioni
 
 - clone this repository "Obviously"
 
-``` git clone https://github.com/dareolu/vagrant.git ```
+``` git clone https://github.com/dareolu/globomantics-vagrant.git ```
 
-- Use your preferred IDE to do a find and replace inside vagrantup.yml and vagrantdestroy.yml. replace with the location you have cloned this repo on your computer. In my case, I am using cygwin on Windows.
-
-''' /cygdrive/e/GIT/tmp/vagrant/k8s-cluster ```
+- Have a look at the group_vars/all/vars.yml file and update it with the directory you want vagrant files to be created.
 
 - Run the playbook
 
@@ -32,13 +32,13 @@ Vagrant is used to create virtual machines, but I have wrapped up the provisioni
 
 # Naming Conventions for the servers
 
-## Client/Utility
-A Client/Utility server for remote management and administration
+## Management Node
+This is the client machine within Globomantics Infrastructure. We shall be using this for remote management and administration
 
 ## Jenkins Server
 CI/CD pipelines
 
-## Kubernetes Cluster - I will be using kubernetes to deploy different applications and technologies, such as
+## Kubernetes Master/Nodes - I will be using kubernetes to deploy different applications and technologies, such as
 - ELK stack
 - Python app
 - Java app
@@ -49,7 +49,7 @@ CI/CD pipelines
 - Redshift
 
 ## Consul Cluster
-I use VMs for the Consul cluster. My desired configuration is to ultimately use kubernetes for consul. But for now, lets stick with the VMs.
+At the moment, I am using VMs for the Consul Server cluster. My desired configuration is to ultimately use kubernetes for consul. But for now, lets stick with the VMs.
 
 ## OS on all nodes:
 - Distributor ID: Ubuntu
