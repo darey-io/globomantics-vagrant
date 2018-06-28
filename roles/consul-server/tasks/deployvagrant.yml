@@ -1,0 +1,8 @@
+---
+
+- name: Provision the management node
+  shell: vagrant up
+  args:
+    chdir: "{{ working_dir }}"
+  async: 100000
+  poll: 0

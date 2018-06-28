@@ -1,0 +1,8 @@
+---
+# tasks file for management
+
+- name: Build the vagrant file
+  include: buildVagrant.yml
+
+- name: Build the vagrant file
+  include: deployvagrant.yml

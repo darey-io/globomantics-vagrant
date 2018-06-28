@@ -1,0 +1,3 @@
+---
+# vars file for jenkins
+working_dir: "{{ vagrant_dir }}/jenkins"

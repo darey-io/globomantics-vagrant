@@ -1,0 +1,3 @@
+---
+# vars file for management
+working_dir: "{{ vagrant_dir }}/mgt"
