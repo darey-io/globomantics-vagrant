@@ -1,4 +1,4 @@
-# infrastructure Development using DEVOPS Technologies
+# Infrastructure Development - {Ansible, Vagrant}
 This is one of those projects that I pick up when I am less busy. The goal is to use it as an opportunity to practice and touch on different technologies around automation and Devops. 
 
 This infrastructure is for a popular fictional company called Globomantics. The company embraces IAC practices and her private cloud is provisioned with one of Hashicorps tool-kit "Vagrant"
