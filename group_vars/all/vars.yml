@@ -1,2 +1,3 @@
 
 vagrant_dir: /cygdrive/e/GIT/globomantics-vagrant
+dc_deploy_type: single # Other accepted value is "dr"
