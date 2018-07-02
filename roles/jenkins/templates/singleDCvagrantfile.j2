@@ -1,0 +1,47 @@
+# Define variables
+varDomain = "globomantics"
+varUtilityNode = "jenkins"
+varHostEntries = ""
+varVMMemory = 5120
+varVMCPU = 4
+
+#Now pass hostfile content into /etc/hosts
+$etchosts = <<SCRIPT
+#!/bin/bash
+cat > /etc/hosts <<EOF
+127.0.0.1       localhost
+#{varHostEntries}
+EOF
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = false
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.provision "shell", path: "provision/setup-consul.sh", privileged: false
+  config.vm.provision "shell", path: "provision/setup-ansible.sh", privileged: false
+  config.vm.provision "shell", path: "provision/setup-docker.sh", privileged: false
+  config.vm.provision "shell", path: "provision/setup-kubectl.sh", privileged: false
+  config.vm.provision "shell", path: "provision/setup-jenkins.sh", privileged: false
+
+  ['london'].each do |dc|
+
+    ip_prefix = dc == 'china' ? '172.20.20.1' : '172.20.20.'
+
+    config.vm.define "#{dc}-jenkins" do |jenkins|
+      jenkins.vm.hostname = "#{dc}-jenkins.#{varDomain}"
+      jenkins.vm.network "private_network", ip: "#{ip_prefix}12"
+      varHostEntries << "#{ip_prefix}12" "#{dc}-jenkins.#{varDomain}" "#{dc}-jenkins\n"
+      jenkins.vm.provision :shell, :inline => $etchosts
+      jenkins.vm.provider :virtualbox do |v|
+        v.name = "#{dc}-#{varUtilityNode }".to_s
+        v.gui = false
+        v.customize ["modifyvm", :id, "--memory", "#{varVMMemory}".to_s]
+        v.customize ["modifyvm", :id, "--cpus", "#{varVMCPU}".to_s]
+      end
+    end
+  end
+end

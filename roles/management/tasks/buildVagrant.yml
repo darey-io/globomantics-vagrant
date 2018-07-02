@@ -13,8 +13,19 @@
       src: "{{ item.src }}"
       dest: "{{ item.dest }}"
   with_items:
-    - {src: "doubleDCvagrantfile.j2" , dest: "{{ working_dir }}/Vagrantfile"}
     - {src: "setup-ansible.sh.j2" , dest: "{{ working_dir }}/provision/setup-ansible.sh"}
     - {src: "setup-consul.sh.j2" , dest: "{{ working_dir }}/provision/setup-consul.sh"}
     - {src: "setup-docker.sh.j2" , dest: "{{ working_dir }}/provision/setup-docker.sh"}
     - {src: "setup-kubectl.sh.j2" , dest: "{{ working_dir }}/provision/setup-kubectl.sh"}
+
+- name: Create the Vagrant File for a DR Solution (Management Node)
+  template:
+      src: "doubleDCvagrantfile.j2"
+      dest: "{{ working_dir }}/Vagrantfile"
+  when: dc_deploy_type == "dr"
+
+- name: Create the Vagrant File for a Single DC Solution (Management Node)
+  template:
+      src: "singleDCvagrantfile.j2"
+      dest: "{{ working_dir }}/Vagrantfile"
+  when: dc_deploy_type == "single"
