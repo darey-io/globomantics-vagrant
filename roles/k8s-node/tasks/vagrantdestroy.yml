@@ -1,0 +1,12 @@
+---
+
+- name: Destroy k8s Nodes
+  shell: vagrant destroy -f
+  args:
+    chdir: "{{ working_dir }}"
+
+
+- name: Clean up the working directory
+  file:
+    path: "{{ working_dir }}"
+    state: absent

@@ -1,5 +1,5 @@
 # Infrastructure Development - {Ansible, Vagrant}
-This is one of those projects that I pick up when I am less busy. The goal is to use it as an opportunity to practice and touch on different technologies around automation and Devops. 
+This is one of those projects that I pick up when I am less busy. The goal is to use it as an opportunity to practice and touch on different technologies around automation and Devops.
 
 This infrastructure is for a popular fictional company called Globomantics. The company embraces IAC practices and her private cloud is provisioned with one of Hashicorps tool-kit "Vagrant"
 
@@ -8,7 +8,7 @@ The coding practice here is not entirely intended for production best practices.
 
 ## Overview
 
-In this particular project, I set up Globomantic's infrastructure on my 128GB RAM HPz820 Server at home (If you dont have a beefy system, its fine. Just tweak the ansible variable and adjust the guest VM's CPU and Memory sizes). 
+In this particular project, I set up Globomantic's infrastructure on my 128GB RAM HPz820 Server at home (If you dont have a beefy system, its fine. Just tweak the ansible variable and adjust the guest VM's CPU and Memory sizes).
 
 Part of what i intend to achieve is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time like me, and you are interested to work with me to improve this infrastructure, and also create more use cases, then by all means please reach out to me at dolufunmilayo@3xpoint.com. You can also have a look at the TODO.md file in this repository. Thats my little JIRA for task management. :)
 
@@ -28,7 +28,11 @@ Vagrant is used to create virtual machines, but I have wrapped up the provisioni
 
 - Run the playbook
 
-```ansible-playbook vagrantup.yml```
+```ansible-playbook build-infrastructure.yml ```
+
+- You can also destroy the infrastructure by providing extra variable to the command line
+
+```ansible-playbook build-infrastructure.yml --extra-vars "destroy=yes"```
 
 # Naming Conventions for the servers
 

@@ -6,3 +6,7 @@
 
 - name: Build the vagrant file
   include: deployvagrant.yml
+
+- name: Destroy the Management node
+  include: vagrantdestroy.yml
+  when: destroy == "yes"
