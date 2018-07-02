@@ -1,8 +1,12 @@
 ---
-# tasks file for management
+# tasks file for k8s Nodes
 
 - name: Build the vagrant file
   include: buildVagrant.yml
 
 - name: Deploy the Infrastructure
   include: deployvagrant.yml
+
+- name: Destroy the k8s Nodes
+  include: vagrantdestroy.yml
+  when: destroy == "yes"

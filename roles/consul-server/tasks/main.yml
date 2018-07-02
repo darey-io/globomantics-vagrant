@@ -1,8 +1,12 @@
 ---
-# tasks file for management
+# tasks file for Consul Servers
 
 - name: Build the vagrant file
   include: buildVagrant.yml
 
 - name: Deploy the Infrastructure
   include: deployvagrant.yml
+
+- name: Destroy the Consul Servers
+  include: vagrantdestroy.yml
+  when: destroy == "yes"
