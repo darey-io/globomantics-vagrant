@@ -13,6 +13,7 @@
       src: "{{ item.src }}"
       dest: "{{ item.dest }}"
   with_items:
+    - {src: "setup-java.sh.j2" , dest: "{{ working_dir }}/provision/setup-java.sh"}
     - {src: "setup-ansible.sh.j2" , dest: "{{ working_dir }}/provision/setup-ansible.sh"}
     - {src: "setup-consul.sh.j2" , dest: "{{ working_dir }}/provision/setup-consul.sh"}
     - {src: "setup-docker.sh.j2" , dest: "{{ working_dir }}/provision/setup-docker.sh"}

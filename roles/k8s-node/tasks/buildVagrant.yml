@@ -17,6 +17,7 @@
     - {src: "setup-consul.sh.j2" , dest: "{{ working_dir }}/provision/setup-consul.sh"}
     - {src: "setup-docker.sh.j2" , dest: "{{ working_dir }}/provision/setup-docker.sh"}
     - {src: "setup-kubectl.sh.j2" , dest: "{{ working_dir }}/provision/setup-kubectl.sh"}
+    - {src: "setup-java.sh.j2" , dest: "{{ working_dir }}/provision/setup-java.sh"}
 
 - name: Create the Vagrant File for a DR Solution (k8s-Node)
   template:
