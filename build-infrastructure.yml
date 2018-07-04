@@ -3,8 +3,7 @@
 - hosts: 127.0.0.1
 
   roles:
-  - management
-  - consul-server
-  - k8s-master
-  - k8s-node
+  - client
+  - master-nodes
+  - worker-nodes
   - jenkins

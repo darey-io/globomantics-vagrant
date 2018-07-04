@@ -1,6 +1,6 @@
 ---
 
-- name: Destroy k8s Nodes
+- name: Destroy worker-nodes
   shell: vagrant destroy -f
   args:
     chdir: "{{ working_dir }}"

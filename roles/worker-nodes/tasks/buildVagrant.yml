@@ -1,6 +1,6 @@
 ---
 
-- name: Set up the working directory for worker-nodess
+- name: Set up the working directory for worker-nodes
   file:
     path: "{{ item }}"
     state: directory

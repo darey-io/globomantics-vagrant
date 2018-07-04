@@ -1,6 +1,6 @@
 ---
 
-- name: Set up the working directory for master-nodess
+- name: Set up the working directory for master-nodes
   file:
     path: "{{ item }}"
     state: directory
@@ -21,13 +21,13 @@
     - {src: "setup-elasticsearch.sh.j2" , dest: "{{ working_dir }}/provision/setup-elasticsearch.sh"}
     - {src: "setup-kibana.sh.j2" , dest: "{{ working_dir }}/provision/setup-kibana.sh"}
 
-- name: Create the Vagrant File for a DR Solution (master-nodess)
+- name: Create the Vagrant File for a DR Solution (master-nodes)
   template:
       src: "doubleDCvagrantfile.j2"
       dest: "{{ working_dir }}/Vagrantfile"
   when: dc_deploy_type == "dr"
 
-- name: Create the Vagrant File for a Single DC Solution (master-nodess)
+- name: Create the Vagrant File for a Single DC Solution (master-nodes)
   template:
       src: "singleDCvagrantfile.j2"
       dest: "{{ working_dir }}/Vagrantfile"

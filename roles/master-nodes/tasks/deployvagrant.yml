@@ -1,6 +1,6 @@
 ---
 
-- name: Provision the Kubernetes Masters
+- name: Provision the Master Nodes
   shell: touch deployed && vagrant up
   args:
     chdir: "{{ working_dir }}"
