@@ -1,0 +1,3 @@
+---
+# defaults file for worker-nodes
+destroy: no

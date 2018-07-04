@@ -1,0 +1,34 @@
+---
+
+- name: Set up the working directory for worker-nodes
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ working_dir }}"
+    - "{{ working_dir }}/provision"
+
+- name: Build the provisioning environment for Vagrant (worker-nodes)
+  template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+  with_items:
+    - {src: "setup-ansible.sh.j2" , dest: "{{ working_dir }}/provision/setup-ansible.sh"}
+    - {src: "setup-consul.sh.j2" , dest: "{{ working_dir }}/provision/setup-consul.sh"}
+    - {src: "setup-docker.sh.j2" , dest: "{{ working_dir }}/provision/setup-docker.sh"}
+    - {src: "setup-kubectl.sh.j2" , dest: "{{ working_dir }}/provision/setup-kubectl.sh"}
+    - {src: "setup-java.sh.j2" , dest: "{{ working_dir }}/provision/setup-java.sh"}
+    - {src: "setup-elasticsearch.sh.j2" , dest: "{{ working_dir }}/provision/setup-elasticsearch.sh"}
+    - {src: "setup-kibana.sh.j2" , dest: "{{ working_dir }}/provision/setup-kibana.sh"}
+
+- name: Create the Vagrant File for a DR Solution (worker-nodes)
+  template:
+      src: "doubleDCvagrantfile.j2"
+      dest: "{{ working_dir }}/Vagrantfile"
+  when: dc_deploy_type == "dr"
+
+- name: Create the Vagrant File for a Single DC Solution (worker-nodes)
+  template:
+      src: "singleDCvagrantfile.j2"
+      dest: "{{ working_dir }}/Vagrantfile"
+  when: dc_deploy_type == "single"

@@ -1,0 +1,3 @@
+---
+# vars file for worker-nodes
+working_dir: "{{ vagrant_dir }}/worker-nodes"

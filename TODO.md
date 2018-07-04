@@ -1,12 +1,20 @@
 - Update Vagrant file - CIDIR for each Data Centre has to be different
 - etchosts are not being populated dynamically
 - Refactor the code base and remove all occurence of hardcoded values. (Centralize Variables only in group_vars)
-- Build a graceful Tear down process of the infrastructure
+- Build a graceful Tear down process of the infrastructure - `Done`
 - Make Ansible show the Vagrant Up in verbose
-- Make Vagrant Up Idempotent
-- Develop the single DC version of the infrastructure.(Give a condition in Ansible to accomodate single DC deployment) Currently I have developed China and London DCs
+- Make Vagrant Up Idempotent - `Done`
+- Develop the single DC version of the infrastructure.(Give a condition in Ansible to accomodate single DC deployment) Currently I have developed China and London DCs `Done`
 - Create a parker repository to build the image. This way we can remove the provisioning of Ansible, Consul, Kubectl and Docker
 - Develop Unit tests for every Ansible role
 - Update the Vagrant files with CPU/MEmory Variables in group_vars
 - Document the code base with descriptive comments
 - k8s-Nodes cannot scale more than 9-10 nodes due to how the CIDR is presented. (Need to be more scalable) - Check the Vagrantfile
+- Add support for Java version 8 on all the nodes `Done`
+- Refactor the code base to support code re-use. Currently the Template files are spread accross each role. We should be able to have them in one central place.
+- Document README for each of the roles
+- Add support for ELK Stack. Using VMs for ElasticSearch Datanodes, and Kubernetes for Elasticsearch Client and Master nodes
+- Rename the k8s-Master so that we can use the same nodes for all Master services. (Not Ideal for Production but okay for Testing/Development). Consul Servers will be used on these nodes as well.
+- Configure the disks to be separate from the OS disk
+- Configure the Elasticsearch client nodes behind an nginx reverse proxy
+- Secure elasticsearch with SSL and shield (look into  xpac.security too)
