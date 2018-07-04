@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Download elasticsearch
+OPT_DIR="{{ opt_dir }}/kibana"
+
+if [ ! -d "$OPT_DIR" ]; then
+  sudo mkdir $OPT_DIR
+fi
+
+cd $OPT_DIR
+sudo wget https://artifacts.elastic.co/downloads/kibana/kibana-5.4.0-amd64.deb
+
+# Install Elastic search on Debian based Ubuntu OS
+sudo dpkg -i kibana-5.4.0-amd64.deb

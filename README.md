@@ -10,7 +10,7 @@ The coding practice here is not entirely intended for production best practices.
 
 In this particular project, I set up Globomantic's infrastructure on my 128GB RAM HPz820 Server at home (If you dont have a beefy system, its fine. Just tweak the ansible variable and adjust the guest VM's CPU and Memory sizes).
 
-Part of what i intend to achieve is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time like me, and you are interested to work with me to improve this infrastructure, and also create more use cases, then by all means please reach out to me at dolufunmilayo@3xpoint.com. You can also have a look at the TODO.md file in this repository. Thats my little JIRA for task management. :)
+Part of what i intend to achieve is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time like me, and you are interested to work with me to improve this infrastructure, and also create more use cases, then by all means please reach out to me at dolufunmilayo@3xpoint.com. You can also have a look at the TODO.md file in this repository. Thats my little JIRA for task client. :)
 
 ## Setup:
 
@@ -34,28 +34,37 @@ Vagrant is used to create virtual machines, but I have wrapped up the provisioni
 
 ```ansible-playbook build-infrastructure.yml --extra-vars "destroy=yes"```
 
-# Naming Conventions for the servers
+# Ansible roles
 
-## Management Node
-This is the client machine within Globomantics Infrastructure. We shall be using this for remote management and administration
+Each of the roles is tasked to build a Vagrantfile and provisioning shell scripts required to build and configure required servers.
 
-## Jenkins Server
+## Client
+
+Remote administration of the infrastructure and and job submissions will be done through the client nodes.
+Also, the elasticsearch client service will be running on this node with "nginx" serving the reverse proxy to the "X" number of client nodes deployed.
+
+## Jenkins
 CI/CD pipelines
 
-## Kubernetes Master/Nodes - I will be using kubernetes to deploy different applications and technologies, such as
-- ELK stack
-- Python app
-- Java app
-- Consul
-- nginx
-- Apache Web Server
-- Mysql
-- Redshift
+## Master Nodes
 
-## Consul Cluster
-At the moment, I am using VMs for the Consul Server cluster. My desired configuration is to ultimately use kubernetes for consul. But for now, lets stick with the VMs.
+Several technologies have Master/Slave architecture. The Master nodes will be hosting such technologies that require a Master server. Such as those identified below. Because this is a development space, they will all share the same master. This will NEVER be the case in production.
 
-## OS on all nodes:
+- Elasticsearch Masters
+- Consul Servers
+- Kubernetes Masters
+- Docker Swarm Masters
+
+
+## Worker Nodes
+
+Similar to above Master Nodes, the corresponding technologies that require worker nodes will be deployed to the "Worker Nodes"
+
+
+## OS Linux Distribution on all nodes:
+
+The current set up only supports below Linux distribution. In future release, we will dynamically support other Linux flavors
+
 - Distributor ID: Ubuntu
 - Description:    Ubuntu 16.04.4 LTS
 - Release:        16.04

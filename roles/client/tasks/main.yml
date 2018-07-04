@@ -1,0 +1,12 @@
+---
+# tasks file for client
+
+- name: Build the vagrant file
+  include: buildVagrant.yml
+
+- name: Build the vagrant file
+  include: deployvagrant.yml
+
+- name: Destroy the client node
+  include: vagrantdestroy.yml
+  when: destroy == "yes"
