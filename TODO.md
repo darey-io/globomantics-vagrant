@@ -4,7 +4,7 @@
 - Build a graceful Tear down process of the infrastructure - `Done`
 - Make Ansible show the Vagrant Up in verbose
 - Make Vagrant Up Idempotent - `Done`
-- Develop the single DC version of the infrastructure.(Give a condition in Ansible to accomodate single DC deployment) Currently I have developed China and London DCs `Done`
+- Develop the single DC version of the infrastructure.(Give a condition in Ansible to accomodate single DC deployment) Currently I have developed {{ dc2 }} and {{ dc1 }} DCs `Done`
 - Create a parker repository to build the image. This way we can remove the provisioning of Ansible, Consul, Kubectl and Docker
 - Develop Unit tests for every Ansible role
 - Update the Vagrant files with CPU/MEmory Variables in group_vars

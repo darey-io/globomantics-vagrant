@@ -1,12 +1,12 @@
 ---
 # tasks file for worker-nodes
 
-- name: Build the vagrant file
+- name: Build Workers | Configure Vagrantfile
   include: buildVagrant.yml
 
-- name: Deploy the Infrastructure
+- name: Deploy Workers | Vagrant Up
   include: deployvagrant.yml
 
-- name: Destroy the worker-nodes
+- name: Destroy Masters |  Vagrant Destroy
   include: vagrantdestroy.yml
   when: destroy == "yes"

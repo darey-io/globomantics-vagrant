@@ -1,4 +1,31 @@
-#Infrastructure Directories
+# Host Computer Variables
+vagrant_dir: /cygdrive/e/devops/development/development/INFRASTRUCTURE
+
+# Virtual Servers Infrastructure
+dc1: usa
+dc2: uk
 opt_dir: /opt
-vagrant_dir: /cygdrive/e/GIT/globomantics-vagrant
 dc_deploy_type: single # Other accepted value is "dr"
+
+#Networking
+cidr: 10.10.10 # accepted values are the first 3 part of an IP address
+
+#Client
+client_vm_memory: 3072
+client_vm_cpu: 2
+#client_vm_count:
+
+#Master
+master_vm_memory: 3072
+master_vm_cpu: 3
+master_vm_count: 2
+
+#Worker
+worker_vm_memory: 5120
+worker_vm_cpu: 4
+worker_vm_count: 2
+
+#Jenkins
+jenkins_vm_memory: 2048
+jenkins_vm_cpu: 2
+#jenkins_vm_count:
