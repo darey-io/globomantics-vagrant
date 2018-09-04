@@ -16,12 +16,12 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
-  config.vm.provision "shell", path: "provision/setup-consul.sh", privileged: false
-  config.vm.provision "shell", path: "provision/setup-ansible.sh", privileged: false
-  config.vm.provision "shell", path: "provision/setup-docker.sh", privileged: false
-  config.vm.provision "shell", path: "provision/setup-kubectl.sh", privileged: false
-  config.vm.provision "shell", path: "provision/setup-java.sh", privileged: false
-  config.vm.provision "shell", path: "provision/setup-elasticsearch.sh", privileged: false
+  // config.vm.provision "shell", path: "provision/setup-consul.sh", privileged: false
+  // config.vm.provision "shell", path: "provision/setup-ansible.sh", privileged: false
+  // config.vm.provision "shell", path: "provision/setup-docker.sh", privileged: false
+  // config.vm.provision "shell", path: "provision/setup-kubectl.sh", privileged: false
+  // config.vm.provision "shell", path: "provision/setup-java.sh", privileged: false
+  // config.vm.provision "shell", path: "provision/setup-elasticsearch.sh", privileged: false
 
   ['{{ dc1 }}'].each do |dc|
 
