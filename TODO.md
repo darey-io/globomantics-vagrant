@@ -13,8 +13,8 @@
 - Add support for Java version 8 on all the nodes `Done`
 - Refactor the code base to support code re-use. Currently the Template files are spread accross each role. We should be able to have them in one central place.
 - Document README for each of the roles
-- Add support for ELK Stack. Using VMs for ElasticSearch Datanodes, and Kubernetes for Elasticsearch Client and Master nodes
+- Add support for ELK Stack. Using VMs for ElasticSearch Datanodes, and Kubernetes for Elasticsearch ldap and Master nodes
 - Rename the k8s-Master so that we can use the same nodes for all Master services. (Not Ideal for Production but okay for Testing/Development). Consul Servers will be used on these nodes as well.
 - Configure the disks to be separate from the OS disk
-- Configure the Elasticsearch client nodes behind an nginx reverse proxy
+- Configure the Elasticsearch ldap nodes behind an nginx reverse proxy
 - Secure elasticsearch with SSL and shield (look into  xpac.security too)

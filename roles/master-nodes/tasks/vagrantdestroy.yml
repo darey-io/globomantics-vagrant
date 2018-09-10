@@ -3,10 +3,9 @@
 - name: Destroy Master Nodes
   shell: vagrant destroy -f
   args:
-    chdir: "{{ working_dir }}"
-
+    chdir: "{{ work_dir }}"
 
 - name: Clean up the working directory
   file:
-    path: "{{ working_dir }}"
+    path: "{{ work_dir }}"
     state: absent

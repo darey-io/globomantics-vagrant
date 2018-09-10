@@ -1,0 +1,23 @@
+---
+- name: Set working directory
+  set_fact:
+    work_dir: "{{ vagrant_dir }}/ldap"
+
+- name: Set up the vagrant directory for ldap node
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ work_dir }}"
+
+- name: Create the Vagrant File for a DR Solution (ldap Node)
+  template:
+      src: "doubleDCvagrantfile.j2"
+      dest: "{{ work_dir }}/Vagrantfile"
+  when: dc_deploy_type == "dr"
+
+- name: Create the Vagrant File for a Single DC Solution (ldap Node)
+  template:
+      src: "singleDCvagrantfile.j2"
+      dest: "{{ work_dir }}/Vagrantfile"
+  when: dc_deploy_type == "single"

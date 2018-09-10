@@ -1,0 +1,13 @@
+---
+
+- name: Destroy ldap node
+  shell: vagrant destroy -f
+  args:
+    chdir: "{{ work_dir }}"
+
+
+
+- name: Clean up the vagrant directory
+  file:
+    path: "{{ work_dir }}"
+    state: absent

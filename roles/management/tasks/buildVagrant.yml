@@ -1,0 +1,23 @@
+---
+- name: Set working directory
+  set_fact:
+    work_dir: "{{ working_dir }}/management"
+
+- name: Set up the vagrant directory for management node
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ work_dir }}"
+
+- name: Create the Vagrant File for a DR Solution (management Node)
+  template:
+      src: "doubleDCvagrantfile.j2"
+      dest: "{{ work_dir }}/Vagrantfile"
+  when: dc_deploy_type == "dr"
+
+- name: Create the Vagrant File for a Single DC Solution (management Node)
+  template:
+      src: "singleDCvagrantfile.j2"
+      dest: "{{ work_dir }}/Vagrantfile"
+  when: dc_deploy_type == "single"
