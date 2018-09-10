@@ -1,0 +1,9 @@
+---
+
+- name: Set up the common vagrant directory
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ vagrant_dir }}"
+    - "{{ working_dir }}"

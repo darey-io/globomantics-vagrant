@@ -1,3 +1,0 @@
----
-# vars file for client
-working_dir: "{{ vagrant_dir }}/client"

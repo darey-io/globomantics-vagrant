@@ -10,7 +10,7 @@ The coding practice here is not entirely intended for production best practices.
 
 In this particular project, I set up Globomantic's infrastructure on my 128GB RAM HPz820 Server at home (If you dont have a beefy system, its fine. Just tweak the ansible variable and adjust the guest VM's CPU and Memory sizes).
 
-Part of what i intend to achieve is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time like me, and you are interested to work with me to improve this infrastructure, and also create more use cases, then by all means please reach out to me at dolufunmilayo@3xpoint.com. You can also have a look at the TODO.md file in this repository. Thats my little JIRA for task client. :)
+Part of what I intend to achieve is to have a CI/CD pipeline for all the company's applications, including the codified infrastructure. This approach allows me to practice different technologies. If you sometimes have spare time like me, and you are interested to work with me to improve this infrastructure, and also create more use cases, then by all means please reach out to me at dolufunmilayo@3xpoint.com. You can also have a look at the TODO.md file in this repository. That's my little JIRA for task management. :)
 
 ## Setup:
 
@@ -38,10 +38,10 @@ Vagrant is used to create virtual machines, but I have wrapped up the provisioni
 
 Each of the roles is tasked to build a Vagrantfile and provisioning shell scripts required to build and configure required servers.
 
-## Client
+## Management
 
-Remote administration of the infrastructure and and job submissions will be done through the client nodes.
-Also, the elasticsearch client service will be running on this node with "nginx" serving the reverse proxy to the "X" number of client nodes deployed.
+Remote administration of the infrastructure will be done through the management node.
+Also, the elasticsearch management service will be running on this node with "nginx" serving the reverse proxy to the "X" number of management nodes deployed.
 
 ## Jenkins
 CI/CD pipelines

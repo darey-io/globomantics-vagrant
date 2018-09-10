@@ -3,8 +3,9 @@
 - hosts: 127.0.0.1
 
   roles:
-  - client
+  - common
+  - jenkins
+  - ldap
+  - management
   - master-nodes
   - worker-nodes
-  - jenkins
-  - open-ladap

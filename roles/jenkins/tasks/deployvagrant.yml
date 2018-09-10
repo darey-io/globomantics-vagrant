@@ -3,7 +3,7 @@
 - name: Provision the Jenkins node
   shell: touch deployed && vagrant up
   args:
-    chdir: "{{ working_dir }}"
-    creates: "{{ working_dir }}/deployed"
+    chdir: "{{ work_dir }}"
+    creates: "{{ work_dir }}/deployed"
   async: 100000
   poll: 0

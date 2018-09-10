@@ -3,10 +3,12 @@
 
 - name: Build Workers | Configure Vagrantfile
   include: buildVagrant.yml
+  when:  user_infrastructure
 
 - name: Deploy Workers | Vagrant Up
   include: deployvagrant.yml
+  when:  user_infrastructure
 
 - name: Destroy Masters |  Vagrant Destroy
   include: vagrantdestroy.yml
-  when: destroy == "yes"
+  when: destroy == "yes" and user_infrastructure

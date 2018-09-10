@@ -1,0 +1,42 @@
+# Define variables
+varDomain = "globomantics"
+varNodeName = "ldap"
+varHostEntries = ""
+varVMMemory = {{ ldap_vm_memory }}
+varVMCPU = {{ ldap_vm_cpu }}
+
+#Now pass hostfile content into /etc/hosts
+$etchosts = <<SCRIPT
+#!/bin/bash
+cat > /etc/hosts <<EOF
+127.0.0.1       localhost
+#{varHostEntries}
+EOF
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = false
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+  config.vm.box = "ubuntu/xenial64"
+
+  ['{{ dc2 }}', '{{ dc1 }}'].each do |dc|
+
+    ip_prefix = dc == '{{ dc2 }}' ? '{{ cidr }}.1' : '{{ cidr }}.'
+
+    config.vm.define "#{dc}-ldap" do |ldap|
+      ldap.vm.hostname = "#{dc}-#{varNodeName}.#{varDomain}"
+      ldap.vm.network "private_network", ip: "#{ip_prefix}11"
+      varHostEntries << "#{ip_prefix}11" "#{dc}-ldap.#{varDomain}" "#{dc}-#{varNodeName}\n"
+      ldap.vm.provision :shell, :inline => $etchosts
+      ldap.vm.provider :virtualbox do |v|
+        v.name = "#{dc}-#{varNodeName}".to_s
+        v.gui = false
+        v.customize ["modifyvm", :id, "--memory", "#{varVMMemory}".to_s]
+        v.customize ["modifyvm", :id, "--cpus", "#{varVMCPU}".to_s]
+      end
+    end
+  end
+end

@@ -1,3 +1,2 @@
 ---
 # vars file for k8s-cluster
-working_dir: "{{ vagrant_dir }}/master-nodes"

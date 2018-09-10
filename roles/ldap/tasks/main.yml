@@ -1,0 +1,14 @@
+---
+# tasks file for ldap
+
+- name: Build ldap | Configure Vagrantfile
+  include: buildVagrant.yml
+  when: not user_infrastructure
+
+- name: Deploy ldap | Vagrant Up
+  include: deployvagrant.yml
+  when: not user_infrastructure
+
+- name: Destroy ldap |  Vagrant Destroy
+  include: vagrantdestroy.yml
+  when: destroy == "yes" and not user_infrastructure

@@ -16,12 +16,6 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
-  // config.vm.provision "shell", path: "provision/setup-consul.sh", privileged: false
-  // config.vm.provision "shell", path: "provision/setup-ansible.sh", privileged: false
-  // config.vm.provision "shell", path: "provision/setup-docker.sh", privileged: false
-  // config.vm.provision "shell", path: "provision/setup-kubectl.sh", privileged: false
-  // config.vm.provision "shell", path: "provision/setup-java.sh", privileged: false
-  // config.vm.provision "shell", path: "provision/setup-elasticsearch.sh", privileged: false
 
   ['{{ dc2 }}', '{{ dc1 }}'].each do |dc|
 
@@ -29,12 +23,12 @@ Vagrant.configure("2") do |config|
 
     (1..{{ worker_vm_count }}).each do |i|
       config.vm.define "#{dc}-workernode#{i}" do |workernode|
-        workernode.vm.hostname = "#{dc}-workernode#{i}"
+        workernode.vm.hostname = "{{ owner }}-#{dc}-workernode#{i}"
         workernode.vm.network "private_network", ip: "#{ip_prefix}4#{i}"
         varHostEntries << "#{ip_prefix}4#{i}" "#{dc}-workernode#{i}.#{varDomain}" "#{dc}-workernode#{i}\n"
         workernode.vm.provision :shell, :inline => $etchosts
         workernode.vm.provider :virtualbox do |v|
-          v.name = "#{dc}-#{varNodeName}#{i}".to_s
+          v.name = "{{ owner }}-#{dc}-#{varNodeName}#{i}".to_s
           v.gui = false
           v.customize ["modifyvm", :id, "--memory", "#{varVMMemory}".to_s]
           v.customize ["modifyvm", :id, "--cpus", "#{varVMCPU}".to_s]
