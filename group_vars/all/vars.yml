@@ -1,5 +1,5 @@
 # Host Computer Variables
-vagrant_dir: /cygdrive/e/devops/development/development/INFRASTRUCTURE
+vagrant_dir: /Users/femistone/devops/infrastructure
 user_infrastructure: true
 
 
@@ -7,7 +7,7 @@ user_infrastructure: true
 dc1: london
 dc2: paris
 opt_dir: /opt
-owner: dare
+owner: femi
 working_dir: "{{ vagrant_dir }}/{{ owner }}"
 dc_deploy_type: single # Other accepted value is "dr"
 
