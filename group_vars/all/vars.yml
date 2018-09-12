@@ -7,13 +7,13 @@ user_infrastructure: true
 dc1: london
 dc2: paris
 opt_dir: /opt
-owner: dare
+owner: production
 working_dir: "{{ vagrant_dir }}/{{ owner }}"
 dc_deploy_type: single # Other accepted value is "dr"
-
+vm_image: geerlingguy/centos7
 
 #Networking
-cidr: 192.168.2 # accepted values are the first 3 part of an IP address
+cidr: 192.168.3 # accepted values are the first 3 part of an IP address
 
 #Jenkins
 jenkins_vm_memory: 3072

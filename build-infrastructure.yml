@@ -4,8 +4,8 @@
 
   roles:
   - common
-  - jenkins
-  - ldap
-  - management
+  # - jenkins
+  # - ldap
+  # - management
   - master-nodes
-  - worker-nodes
+  # - worker-nodes
