@@ -15,7 +15,7 @@ EOF
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "geerlingguy/centos7"
 
   ['{{ dc2 }}', '{{ dc1 }}'].each do |dc|
 
