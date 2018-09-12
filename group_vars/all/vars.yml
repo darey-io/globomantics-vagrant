@@ -34,6 +34,7 @@ management_vm_cpu: 2
 master_vm_memory: 3072
 master_vm_cpu: 3
 master_vm_count: 2
+master_vm_image: geerlingguy/centos7
 
 #Worker
 worker_vm_memory: 5120
