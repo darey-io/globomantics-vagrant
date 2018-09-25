@@ -3,9 +3,9 @@
 - hosts: 127.0.0.1
 
   roles:
-  - common
-  # - jenkins
-  # - ldap
-  # - management
-  - master-nodes
-  # - worker-nodes
+   - common
+   - jenkins
+   - ldap
+   - management
+#   - master-nodes
+#   - worker-nodes

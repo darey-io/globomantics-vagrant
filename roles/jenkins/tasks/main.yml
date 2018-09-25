@@ -11,4 +11,4 @@
 
 - name:  Destroy Jenkin |  Vagrant Destroy
   include: vagrantdestroy.yml
-  when: destroy == "yes" and not user_infrastructure
+  when: destroy and not user_infrastructure
