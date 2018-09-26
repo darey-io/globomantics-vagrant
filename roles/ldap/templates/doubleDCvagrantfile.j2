@@ -28,8 +28,8 @@ Vagrant.configure("2") do |config|
 
     config.vm.define "#{dc}-ldap" do |ldap|
       ldap.vm.hostname = "#{dc}-#{varNodeName}.#{varDomain}"
-      ldap.vm.network "private_network", ip: "#{ip_prefix}11"
-      varHostEntries << "#{ip_prefix}11" "#{dc}-ldap.#{varDomain}" "#{dc}-#{varNodeName}\n"
+      ldap.vm.network "private_network", ip: "#{ip_prefix}12"
+      varHostEntries << "#{ip_prefix}12" "#{dc}-ldap.#{varDomain}" "#{dc}-#{varNodeName}\n"
       ldap.vm.provision :shell, :inline => $etchosts
       ldap.vm.provider :virtualbox do |v|
         v.name = "#{dc}-#{varNodeName}".to_s

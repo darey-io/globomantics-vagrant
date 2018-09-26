@@ -7,8 +7,8 @@
 
 - name: Deploy management | Vagrant Up
   include: deployvagrant.yml
-  when:  user_infrastructure
+  when:  user_infrastructure and not destroy
 
 - name: Destroy management |  Vagrant Destroy
   include: vagrantdestroy.yml
-  when: destroy == "yes" and user_infrastructure
+  when: destroy and user_infrastructure

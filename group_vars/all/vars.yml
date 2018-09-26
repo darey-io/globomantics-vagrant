@@ -1,7 +1,7 @@
 # Host Computer Variables
 vagrant_dir: /cygdrive/e/devops/development/development/INFRASTRUCTURE
-user_infrastructure: true
-
+user_infrastructure: false
+destroy: false
 
 # Virtual Servers Infrastructure
 dc1: london
@@ -10,32 +10,29 @@ opt_dir: /opt
 owner: dare
 working_dir: "{{ vagrant_dir }}/{{ owner }}"
 dc_deploy_type: single # Other accepted value is "dr"
-
+vm_image: ubuntu/trusty64     #geerlingguy/centos7
 
 #Networking
 cidr: 192.168.2 # accepted values are the first 3 part of an IP address
 
 #Jenkins
-jenkins_vm_memory: 3072
+jenkins_vm_memory: 8192
 jenkins_vm_cpu: 2
-#jenkins_vm_count:
 
 #ldap
-ldap_vm_memory: 2048
+ldap_vm_memory: 3072
 ldap_vm_cpu: 2
-#jenkins_vm_count:
 
 #management
-management_vm_memory: 3072
+management_vm_memory: 8192
 management_vm_cpu: 2
-#management_vm_count:
 
 #Master
-master_vm_memory: 3072
+master_vm_memory: 8192
 master_vm_cpu: 3
 master_vm_count: 2
 
 #Worker
-worker_vm_memory: 5120
+worker_vm_memory: 12288
 worker_vm_cpu: 4
 worker_vm_count: 3
